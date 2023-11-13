@@ -1,6 +1,9 @@
 import { Component } from 'react';
-import { Phonebook } from './Phonebook/Phonebook';
 import { nanoid } from 'nanoid';
+import { Contacts } from "./Phonebook/Contacts/Contacts";
+import { Filter } from "./Phonebook/Filter/Filter";
+import { Form } from "./Phonebook/Form/Form";
+import { Section } from "./Phonebook/Section/Section";
 
 export class App extends Component {
   state = {
@@ -53,6 +56,7 @@ export class App extends Component {
         style={{
           height: '100%',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
@@ -60,12 +64,13 @@ export class App extends Component {
         }}
       >
         
-      <Phonebook 
-        createUser={this.createUser} 
-        userFilter={this.userFilter} 
-        handDelete={this.handDelete} 
-        name={this.state} 
-      />
+        <Section title="Phonebook">
+            <Form createUser={this.createUser}/>
+        </Section>
+        <Section title="Contacts">
+          <Filter title="Find contacts by name" userFilter={this.userFilter}/>
+          <Contacts name={this.state} handDelete={this.handDelete} />
+        </Section>
       </div>
     );
   }
