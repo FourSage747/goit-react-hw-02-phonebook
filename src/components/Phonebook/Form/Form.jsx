@@ -22,6 +22,10 @@ export class Form extends Component {
       return;
     }
     this.props.createUser(this.state);
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
@@ -38,6 +42,7 @@ export class Form extends Component {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={this.handleClickName}
+            value={this.state.name}
             required
           />
         </div>
@@ -51,6 +56,7 @@ export class Form extends Component {
             className="form-control"
             id="exampleInputPassword1"
             onChange={this.handleClickNumber}
+            value={this.state.number}
             required
           />
         </div>

@@ -1,24 +1,5 @@
-import { ContactsList } from "./ContactsList"
-
-export const Contacts = ({name, handDelete}) => {
-    let props;
-    if (name.filter) {
-        props = name.filter;
-    }
-    else {
-        props = name.contacts;
-    }
+export const Contacts = ({id, name, number, handDelete}) => {
     return (
-        <ul>
-            {props.map((contact) => (
-                <ContactsList 
-                    key={contact.id} 
-                    id={contact.id} 
-                    name={contact.name} 
-                    number={contact.number} 
-                    handDelete={handDelete}
-                />
-            ))}
-        </ul>
+        <li>{name}: {number} <button type="button" onClick={()=>handDelete(id)}>Delete</button></li>
     )
 }

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Contacts } from "./Phonebook/Contacts/Contacts";
+import { ContactsList } from "./Phonebook/Contacts/ContactsList";
 import { Filter } from "./Phonebook/Filter/Filter";
 import { Form } from "./Phonebook/Form/Form";
 import { Section } from "./Phonebook/Section/Section";
@@ -13,7 +13,7 @@ export class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: null,
+    filter: '',
   };
 
   createUser = (data) => {
@@ -30,13 +30,26 @@ export class App extends Component {
   }
 
   userFilter = (filters) => {
-    if (!filters.trim()) {
-      return this.setState({filter: null});
-    }
-    this.setState((prev) => ({
-      filter: prev.contacts.filter((el) => el.name.toLowerCase().includes(filters.toLowerCase())),
-    }));
+    // if (!filters.trim()) {
+    //   return this.setState({filter: null});
+    // }
+    // this.setState((prev) => ({
+    //   filter: prev.contacts.filter((el) => el.name.toLowerCase().includes(filters.toLowerCase())),
+    // }));
+    this.setState({ filter: filters });
   }
+
+  getFilteredContacts = () => {
+    const { contacts, filter } = this.state;
+
+    if (!filter.trim()) {
+      return contacts;
+    }
+
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
 
   handDelete = (id) =>  {
     if (this.state.filter) {
@@ -51,6 +64,7 @@ export class App extends Component {
   }
 
   render() {
+    const filteredContacts = this.getFilteredContacts();
     return (
       <div
         style={{
@@ -59,7 +73,7 @@ export class App extends Component {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          fontSize: 40,
+          fontSize: 30,
           color: '#010101',
         }}
       >
@@ -69,7 +83,7 @@ export class App extends Component {
         </Section>
         <Section title="Contacts">
           <Filter title="Find contacts by name" userFilter={this.userFilter}/>
-          <Contacts name={this.state} handDelete={this.handDelete} />
+          <ContactsList contacts={this.state.contacts} filteredContacts={filteredContacts} handDelete={this.handDelete} />
         </Section>
       </div>
     );
