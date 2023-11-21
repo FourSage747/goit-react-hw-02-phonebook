@@ -13,7 +13,7 @@ export const Filter = ({title, userFilter}) => {
           className="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
-          onChange={({target}) => userFilter(target.value)}
+          onChange={userFilter}
         />
       </div>
     );

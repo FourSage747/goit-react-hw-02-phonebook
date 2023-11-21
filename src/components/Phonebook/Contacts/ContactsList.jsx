@@ -1,6 +1,6 @@
 import { Contacts } from "./Contacts"
 
-export const ContactsList = ({contacts, filteredContacts, handDelete}) => {
+export const ContactsList = ({filteredContacts, handDelete}) => {
     // let props;
     // if (name.filter) {
     //     props = name.filter;
@@ -10,7 +10,7 @@ export const ContactsList = ({contacts, filteredContacts, handDelete}) => {
     // }
     return (
         <ul>
-            {(filteredContacts ?? contacts).map((el) =>
+            {filteredContacts.map((el) =>
                 <Contacts 
                     key={el.id} 
                     id={el.id} 

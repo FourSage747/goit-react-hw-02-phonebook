@@ -11,11 +11,11 @@ export class Form extends Component {
       [target.name]: target.value,
     });
   };
-  handleClickNumber = ({ target }) => {
-    this.setState({
-      number: target.value,
-    });
-  };
+  // handleClickNumber = ({ target }) => {
+  //   this.setState({
+  //     number: target.value,
+  //   });
+  // };
 
   onClick = () => {
     if (!this.state.name.trim() || !this.state.number.trim()) {
@@ -55,7 +55,7 @@ export class Form extends Component {
             type="text"
             className="form-control"
             id="exampleInputPassword1"
-            onChange={this.handleClickNumber}
+            onChange={this.handleClickName}
             value={this.state.number}
             required
           />

@@ -29,14 +29,14 @@ export class App extends Component {
     }))
   }
 
-  userFilter = (filters) => {
+  userFilter = ({target}) => {
     // if (!filters.trim()) {
     //   return this.setState({filter: null});
     // }
     // this.setState((prev) => ({
     //   filter: prev.contacts.filter((el) => el.name.toLowerCase().includes(filters.toLowerCase())),
     // }));
-    this.setState({ filter: filters });
+    this.setState({ filter: target.value });
   }
 
   getFilteredContacts = () => {
@@ -52,15 +52,15 @@ export class App extends Component {
   };
 
   handDelete = (id) =>  {
-    if (this.state.filter) {
-      this.setState((prev) => ({
-        filter: prev.contacts.filter((el) => el.id !== id),
-      }));
-    } else {
+    // if (this.state.filter) {
+    //   this.setState((prev) => ({
+    //     filter: prev.contacts.filter((el) => el.id !== id),
+    //   }));
+    // }
       this.setState((prev) => ({
         contacts: prev.contacts.filter((el) => el.id !== id),
       }));
-    }
+    
   }
 
   render() {
@@ -83,7 +83,7 @@ export class App extends Component {
         </Section>
         <Section title="Contacts">
           <Filter title="Find contacts by name" userFilter={this.userFilter}/>
-          <ContactsList contacts={this.state.contacts} filteredContacts={filteredContacts} handDelete={this.handDelete} />
+          <ContactsList filteredContacts={filteredContacts} handDelete={this.handDelete} />
         </Section>
       </div>
     );
