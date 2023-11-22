@@ -17,7 +17,8 @@ export class Form extends Component {
   //   });
   // };
 
-  onClick = () => {
+  onClick = (e) => {
+    e.preventDefault();
     if (!this.state.name.trim() || !this.state.number.trim()) {
       return;
     }
@@ -30,7 +31,7 @@ export class Form extends Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.onClick}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Name
@@ -61,8 +62,7 @@ export class Form extends Component {
           />
         </div>
         <button
-          onClick={this.onClick}
-          type="button"
+          type="submit"
           className="btn btn-primary"
         >
           Add contact
